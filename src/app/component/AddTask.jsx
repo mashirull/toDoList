@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setShowAddModal } from '@/slider/modalSlice';
 import { addTask } from '@/slider/addTaskSlice';
-import { useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const AddTask = () => {
 
@@ -13,7 +11,6 @@ const AddTask = () => {
     const [description , setDescription] = useState('')
     const [green , setGreen] = useState(false)
 
-    const toDoList = useSelector(state => state.toDoTask.toDoList)
        
     const toDoItem = {
         task,
@@ -24,22 +21,10 @@ const AddTask = () => {
     const submitHandler = (e)=> {
         e.preventDefault()
         if(task.trim() !== '' && description.trim() !== ''){ // checking if input field is empty for validation
-            const excitingTask = toDoList !== false ? toDoList.filter((elem) => elem.task === task) : []
-
-            if(toDoList.length !== 0){
-                if(excitingTask.length !== 0){ // checking for exciting task
-                    toast(`${task} is Already Added`)
-                }
-                else{
-                    dispatch(addTask(toDoItem))
-                    dispatch(setShowAddModal(false))
-                }
-                
-            }
-            else{
-                dispatch(addTask(toDoItem))
-                dispatch(setShowAddModal(false))
-            }   
+           
+            dispatch(addTask(toDoItem))
+            dispatch(setShowAddModal(false))
+              
         }
     }
 
@@ -75,7 +60,7 @@ const AddTask = () => {
                     <input type='submit' className={`py-2 px-5 rounded-md  text-white font-bold  mt-4 ${green ? 'bg-green-900 cursor-pointer' : 'bg-gray-500  cursor-not-allowed'}`}  value='Add'/>
                 </div>
             </div>
-            <ToastContainer/>
+          
         </form>
 
   )
