@@ -24,7 +24,7 @@ const AddTask = () => {
     const submitHandler = (e)=> {
         e.preventDefault()
         if(task.trim() !== '' && description.trim() !== ''){ // checking if input field is empty for validation
-            const excitingTask = toDoList.filter((elem) => elem.task === task)
+            const excitingTask = toDoList ? toDoList.filter((elem) => elem.task === task) : []
 
             if(toDoList.length !== 0){
                 if(excitingTask.length !== 0){ // checking for exciting task
