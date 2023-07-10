@@ -1,20 +1,19 @@
 'use client'
 import { createSlice } from "@reduxjs/toolkit";
 
-// Getting data from localStorage
-const getLocalStorage = ()=> {
-    const listData =  JSON.parse(localStorage.getItem('taskList'))
+//Getting data from localStorage
+// const getLocalStorage = ()=> {
+      
+//     if(!Array.isArray(JSON.parse(localStorage.getItem('taskList')))){
+//         return []
+//     } else{
+//         return  JSON.parse(localStorage.getItem('taskList')) 
+//     }
 
-    if(!Array.isArray(listData)){
-        return []
-    } else{
-        return listData
-    }
-
-}
+// }
 
 const initialState = {
-    toDoList : getLocalStorage(),
+    toDoList : typeof window !== "undefined" ? window.JSON.parse(localStorage.getItem('taskList')) : false ,
     editTaskData  : {}
 }
 
