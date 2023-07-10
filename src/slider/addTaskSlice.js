@@ -13,7 +13,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // }
 
 const initialState = {
-    toDoList : typeof window !== "undefined" ? window.JSON.parse(localStorage.getItem('taskList')) : false ,
+    toDoList : typeof window !== "undefined" ? window.JSON.parse(localStorage.getItem('taskList')) : [] ,
     editTaskData  : {}
 }
 
