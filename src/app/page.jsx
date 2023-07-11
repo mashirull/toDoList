@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setShowAddModal } from '@/slider/modalSlice';
 import EditTaskModal from './modal/EditTaskModal';
+import DeleteTaskModal from './modal/deleteTaskModal';
 
 
 export default function Home() {
@@ -13,6 +14,8 @@ export default function Home() {
   const showAddModal = useSelector(state => state.showModal.showAddModal)
 
   const showEditModal = useSelector(state => state.showModal.showEditModal)
+  
+  const showDeleteModal = useSelector(state => state.showModal.showDeleteModal)
 
   const dispatch = useDispatch()
 
@@ -29,6 +32,7 @@ export default function Home() {
    
    {showAddModal && <AddTaskModal/>}
    {showEditModal && <EditTaskModal/>}
+   {showDeleteModal && <DeleteTaskModal/>}
 
    <h1 className='text-xl text-gray-200 absolute bottom-5 left-5 '>MASHIRUL HAQUE</h1>
    </>

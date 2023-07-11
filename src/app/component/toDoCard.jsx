@@ -1,19 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiEdit } from 'react-icons/bi';
 import { MdOutlineDeleteForever } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { getEditTask, setStatus } from '@/slider/addTaskSlice';
 import { setShowEditModal , setShowDeleteModal} from '@/slider/modalSlice';
-import DeleteTaskModal from '../modal/deleteTaskModal';
-import { useSelector } from 'react-redux';
+import { setDeleteTask } from '@/slider/addTaskSlice';
 
 
 
 
 const ToDoCard = ({task , index}) => {
-
-  const showDeleteModal = useSelector(state => state.showModal.showDeleteModal)
-
+  // const [deleteTask , setDeleteTask] = useState('')
 
 
     const dispatch = useDispatch()
@@ -23,9 +20,9 @@ const ToDoCard = ({task , index}) => {
        dispatch(getEditTask(index))
     }
 
-  return (
-    <div className='flex items-center justify-between bg-white rounded-2xl p-4 my-3 shadow-md shadow-gray-400'>
-      {showDeleteModal && <DeleteTaskModal task = {task}/>}
+   
+    return (
+      <div className='flex items-center justify-between bg-white rounded-2xl p-4 my-3 shadow-md shadow-gray-400'>
       <div>
         <h1>{task.task}</h1>
         <p className='text-gray-400 text-sm'>{task.description}</p>
@@ -38,7 +35,7 @@ const ToDoCard = ({task , index}) => {
         </div>
           <span className='p-2 text-3xl cursor-pointer text-gray-600' onClick={()=>{handleClick(index)}}><BiEdit /></span>
           <span className='p-2 text-3xl cursor-pointer text-red-800' 
-          onClick={()=>{dispatch(setShowDeleteModal(true))  }}><MdOutlineDeleteForever /></span>
+          onClick={()=>{dispatch(setShowDeleteModal(true)),  dispatch(setDeleteTask(task.task))  }}><MdOutlineDeleteForever /></span>
         </div>
 
 

@@ -1,15 +1,18 @@
+'use client'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch  } from 'react-redux'
 import { setShowDeleteModal } from '@/slider/modalSlice'
-import { removeTask } from '@/slider/addTaskSlice'
+import { removeTask } from '@/slider/addTaskSlice';
+import { useSelector } from 'react-redux';
 
-const DeleteTaskModal = ({task}) => {
+const DeleteTaskModal = ( ) => {
 
     const dispatch = useDispatch()
 
+    const task = useSelector(state => state.toDoTask.deleteTaskData)
 
     const handleClick = () => {
-        dispatch(removeTask(task.task))
+        dispatch(removeTask(task))
         dispatch(setShowDeleteModal(false))
     }
 

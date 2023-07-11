@@ -23,7 +23,8 @@ const getLocalStorage = ()=> {
 
 const initialState = {
     toDoList :  getLocalStorage()    ,
-    editTaskData  : {}
+    editTaskData  : {},
+    deleteTaskData : ''
 }
 
 
@@ -88,17 +89,21 @@ const toDoTaskSlice = createSlice({
             const taskName = action.payload
 
             const filteredList = state.toDoList.filter((elem) => elem.task !== taskName)
-            console.log(filteredList)
+          
             state.toDoList = filteredList
 
             localStorage.setItem('taskList' , JSON.stringify(filteredList))
             
+        },
+        setDeleteTask : (state, action) => {
+            state.deleteTaskData = action.payload
         }
+
     }
 });
 
 
-export const {addTask , getEditTask , submitEditTask , removeTask} = toDoTaskSlice.actions;
+export const {addTask , getEditTask , submitEditTask , removeTask , setDeleteTask} = toDoTaskSlice.actions;
 export const {setStatus} = toDoTaskSlice.actions
 
 export default toDoTaskSlice.reducer
