@@ -3,17 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 
 //Getting data from localStorage
 const getLocalStorage = ()=> {
-      
-    if(!Array.isArray(JSON.parse(localStorage.getItem('taskList')))){
+    if(typeof window !== "undefined"){
+        // JSON.parse(localStorage.getItem('taskList'))
+        if(!Array.isArray(JSON.parse(localStorage.getItem('taskList')))){
+            return []
+        } else{
+            return  JSON.parse(localStorage.getItem('taskList')) 
+        }
+    }else {
         return []
-    } else{
-        return  JSON.parse(localStorage.getItem('taskList')) 
     }
+      
 
 }
 
+
+
+// typeof window !== "undefined" ? window.JSON.parse(localStorage.getItem('taskList')) : [] ,
+
 const initialState = {
-    toDoList :  getLocalStorage()    ,// typeof window !== "undefined" ? window.JSON.parse(localStorage.getItem('taskList')) : [] ,
+    toDoList :  getLocalStorage()    ,
     editTaskData  : {}
 }
 
